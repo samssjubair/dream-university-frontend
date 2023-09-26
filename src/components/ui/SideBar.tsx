@@ -12,6 +12,7 @@ import {
 } from "@ant-design/icons";
 import { USER_ROLE } from '@/constants/role';
 import { sidebarItems } from '@/constants/sidebarItems';
+import { getUserInfo } from '@/services/auth.service';
 
 type MenuItem = Required<MenuProps>["items"][number];
 
@@ -19,7 +20,7 @@ type MenuItem = Required<MenuProps>["items"][number];
 
 const SideBar = () => {
     const [collapsed, setCollapsed] = useState(false);
-    const role = USER_ROLE.STUDENT;
+    const {role} = getUserInfo() as any;
     return (
       <Sider
         collapsible
@@ -27,22 +28,24 @@ const SideBar = () => {
         width={200}
         onCollapse={(value) => setCollapsed(value)}
         style={{
-            overflow: 'auto',
-            height: '100vh',
-            position: 'sticky',
-            left: 0,
-            top: 0,
-            bottom: 0,
+          overflow: "auto",
+          height: "100vh",
+          position: "sticky",
+          left: 0,
+          top: 0,
+          bottom: 0,
         }}
       >
-        <div style={{
-            color: 'white',
-            fontSize: '1.5rem',
-            textAlign: 'center',
-            fontWeight: 'bold',
-            margin: '1rem 0',
-        }}>
-            University of CS
+        <div
+          style={{
+            color: "white",
+            fontSize: "1.5rem",
+            textAlign: "center",
+            fontWeight: "bold",
+            margin: "1rem 0",
+          }}
+        >
+          {collapsed ? "UCS" : "University of CS"}
         </div>
         <Menu
           theme="dark"

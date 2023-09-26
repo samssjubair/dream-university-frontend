@@ -27,7 +27,9 @@ const DashboardLayout = ({children}: {children: React.ReactNode}) => {
     <Layout hasSider>
       <SideBar />
 
-      <Contents>{children}</Contents>
+      <Contents>
+        {children}
+        </Contents>
       {/* <Layout>
         <Header style={{ padding: 0, background: colorBgContainer }} />
         <Content style={{ margin: "0 16px" }}>
