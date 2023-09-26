@@ -1,15 +1,27 @@
-
+"use client"
 import Contents from "@/components/ui/Contents";
 import SideBar from "@/components/ui/SideBar";
+import { isLoggedIn } from "@/services/auth.service";
 import { Breadcrumb, Layout, Menu, theme } from "antd";
+import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 
 const { Header, Content, Footer, Sider } = Layout;
 
 const DashboardLayout = ({children}: {children: React.ReactNode}) => {
   
-//   const {
-//     token: { colorBgContainer },
-//   } = theme.useToken();
+    const userLoggedIn= isLoggedIn();
+    const router= useRouter()
+    const [isLoading, setIsLoading] = useState<boolean>(false);
+
+    useEffect(()=>{
+        if(!userLoggedIn) {
+            router.push("/login");
+        }
+        setIsLoading(true);
+    }, [router, userLoggedIn])
+
+    if(!isLoading) return <div>Loading...</div>
 
   return (
     <Layout hasSider>
